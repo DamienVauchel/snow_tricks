@@ -225,38 +225,4 @@ class Trick
     {
         return $this->slug;
     }
-
-    /**
-     * Add media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     *
-     * @return Trick
-     */
-    public function addMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     */
-    public function removeMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
 }

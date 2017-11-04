@@ -48,11 +48,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ path('home') }}"><h4>SnowTricks</h4></a>
+                    <a class="navbar-brand" href="{{ path('home', {'page': 1}) }}"><h4>SnowTricks</h4></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ path('home') }}">ACCUEIL</a></li>
+                        <li><a href="{{ path('home', {'page': 1}) }}">ACCUEIL</a></li>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -71,9 +71,17 @@
                                 </li>
                                 <li>
                                     <a href="{{ path('fos_user_profile_edit') }}">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i> Modifier mon profil
+                                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                                        Modifier mon profil
                                     </a>
                                 </li>
+                                {% if is_granted('ROLE_AUTHOR') %}
+                                    <li>
+                                        <a href="{{ path('add') }}">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Ajouter un trick
+                                        </a>
+                                    </li>
+                                {% endif %}
                             </ul>
                         </li>
                         {% else %}

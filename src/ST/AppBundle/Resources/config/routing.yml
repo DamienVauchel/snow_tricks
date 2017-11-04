@@ -1,7 +1,0 @@
-st_app_add:
-    path:     /add
-    defaults: { _controller: STAppBundle:Default:add }
-
-st_app_edit:
-    path:     /edit/{id}
-    defaults: { _controller: STAppBundle:Default:edit }

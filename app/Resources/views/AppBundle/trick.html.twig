@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <div class="thumbnail container">
+        <h2 class="text-center">{{ trick.title }}</h2>
+        <br>
+        <p class="text-right">
+            par {{ trick.author }}, le {{ trick.creationDate|date('d/m/Y') }}
+        </p>
+        <hr>
+        <div>
+            {{ trick.description|raw }}
+        </div>
+    </div>
+{% endblock %}

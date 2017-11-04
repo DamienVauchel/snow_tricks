@@ -1,5 +1,5 @@
 st_app:
-    resource: "@STAppBundle/Controller/DefaultController.php"
+    resource: "@STAppBundle/Controller/TrickController.php"
     type: annotation
     prefix:   /
 

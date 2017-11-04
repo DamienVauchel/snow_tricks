@@ -1,0 +1,11 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    <div class="container thumbnail form-container">
+        <h4 class="text-center">Ajouter une figure</h4>
+        <br>
+        <form action="{{ path('add') }}" method="post" class="form">
+            {{ form(form) }}
+        </form>
+    </div>
+{% endblock %}
