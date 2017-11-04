@@ -1,10 +1,7 @@
 st_app:
-    resource: "@STAppBundle/Resources/config/routing.yml"
-    prefix:   /
-
-app:
-    resource: '@AppBundle/Controller/'
+    resource: "@STAppBundle/Controller/DefaultController.php"
     type: annotation
+    prefix:   /
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

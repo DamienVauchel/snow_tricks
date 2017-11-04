@@ -1,10 +1,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="container thumbnail form-container">
-    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+<div class="row">
+    <div class="col-md-4">
+        <h4>Pas encore inscrit?</h4>
+        <em>
+            Nous vous invitons à vous inscrire pour partager vos figures avec nous!
+        </em>
+        <br><hr>
+        <em>
+            Si vous êtes déjà inscrit, vous pouvez vous connecter.
+        </em>
+        <br><br>
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-success">Connexion</a>
+        <br>
     </div>
-    {{ form_end(form) }}
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+        <h4 class="text-center">Inscription</h4>
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_widget(form) }}
+        <div>
+            <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+    </div>
 </div>
