@@ -44,7 +44,7 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("/trick/{id}", name="tick", requirements={"id": "\d*"})
+     * @Route("/trick/{id}", name="trick", requirements={"id": "\d*"})
      */
     public function viewAction($id)
     {

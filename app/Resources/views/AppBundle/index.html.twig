@@ -21,7 +21,7 @@
         <br>
         {% for trick in listTricks %}
             <div class="col-md-4">
-                <a href="{{ path('home', {'page': 1}) }}">
+                <a href="{{ path('trick', {'id': trick.id}) }}">
                     <div class="thumbnail">
                         <h4>{{ trick.title|upper }}</h4>
                         par {{ trick.author }}
