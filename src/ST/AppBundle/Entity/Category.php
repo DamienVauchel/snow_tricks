@@ -3,6 +3,7 @@
 namespace ST\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Category
@@ -29,9 +30,17 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Trick", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Trick", mappedBy="category", cascade={"remove"})
      */
     private $tricks;
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
 
     /**
      * Get id
@@ -106,5 +115,29 @@ class Category
     public function getTricks()
     {
         return $this->tricks;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

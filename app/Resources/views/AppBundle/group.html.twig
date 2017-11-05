@@ -7,7 +7,7 @@
         </div>
     {% endfor %}
 
-    <div class="container">
+    <div class="container home-container">
         <div class="thumbnail tricks-list-container col-md-9">
             <h2 class="text-center">{{ group.name }}</h2>
             <br>
@@ -40,11 +40,16 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="thumbnail col-md-3 tricks-list-container">
+        <div class="col-md-1"></div>
+        <div class="thumbnail col-md-2 tricks-list-container categories">
             <h4 class="text-center">Groupes de figures</h4>
             <ul>
                 {% for category in listCategories %}
-                    <li><a href="{{ path('group', {'id': category.id}) }}">{{ category.name }}</a></li>
+                    <li><a href="{{ path('group', {'slug': category.slug}) }}">{{ category.name }}</a>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path('delete_category', {'id': category.id}) }}" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        {% endif %}
+                    </li>
                 {% endfor %}
             </ul>
         </div>

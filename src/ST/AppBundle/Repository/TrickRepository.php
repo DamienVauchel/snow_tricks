@@ -7,7 +7,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class TrickRepository extends EntityRepository
 {
-    public function getTricks($page, $nbPerPage)
+    public function getTricks()
     {
         $query = $this->createQueryBuilder('t')
 //            ->leftJoin('a.image', 'i')
@@ -15,11 +15,7 @@ class TrickRepository extends EntityRepository
             ->orderBy('t.title')
             ->getQuery();
 
-        $query
-            ->setFirstResult(($page-1) * $nbPerPage)
-            ->setMaxResults($nbPerPage);
-
-        return new Paginator($query, true);
+        return $query->getArrayResult();
     }
 
     public function getGroupTricks($id)

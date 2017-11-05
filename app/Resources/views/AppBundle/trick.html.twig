@@ -16,7 +16,7 @@
             </p>
             <hr>
             <div>
-                Groupe de la figure: <a href="{{ path('group', {'id': trick.category.id}) }}">{{ trick.category.name }}</a>
+                Groupe de la figure: <a href="{{ path('group', {'slug': trick.category.slug}) }}">{{ trick.category.name }}</a>
             </div>
             <div>
                 {{ trick.description|raw }}

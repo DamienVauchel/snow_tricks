@@ -14,38 +14,22 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class TrickController extends Controller
 {
     /**
-     * @Route("/{page}", name="home", requirements={"page": "\d*"})
+     * @Route("/", name="home")
      */
-    public function indexAction($page)
+    public function indexAction()
     {
-        if ($page < 1)
-        {
-            $page = 1;
-        }
-
-        $nbPerPage = 9;
-
         $listTricks = $this->getDoctrine()
             ->getManager()
             ->getRepository('STAppBundle:Trick')
-            ->getTricks($page, $nbPerPage);
+            ->getTricks();
         $listCategories = $this->getDoctrine()
             ->getManager()
             ->getRepository('STAppBundle:Category')
             ->findAll();
 
-        $nbPages = ceil(count($listTricks) / $nbPerPage);
-
-        if ($page > $nbPages)
-        {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas");
-        }
-
         return $this->render('AppBundle/index.html.twig', array(
             'listTricks' => $listTricks,
-            'listCategories' => $listCategories,
-            'nbPages' => $nbPages,
-            'page' => $page
+            'listCategories' => $listCategories
         ));
     }
 
@@ -72,18 +56,19 @@ class TrickController extends Controller
     }
 
     /**
-     * @param $id
+     * @param $slug
      * @return Response
-     * @Route("/group/{id}", name="group", requirements={"id": "\d*"})
+     * @Route("/group/{slug}", name="group")
      */
-    public function viewCategoryAction($id)
+    public function viewCategoryAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $repositoryTrick = $em->getRepository('STAppBundle:Trick');
         $repositoryGroup = $em->getRepository('STAppBundle:Category');
 
+        $group = $repositoryGroup->findBySlug($slug);
+        $id = $group->getId();
         $listTricks = $repositoryTrick->getGroupTricks($id);
-        $group = $repositoryGroup->find($id);
         $listCategories = $repositoryGroup->findAll();
 
         if ($group === null)

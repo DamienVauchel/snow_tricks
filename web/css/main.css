@@ -88,9 +88,14 @@ h1, h2, h3, h4, h5, h6
     margin-top: 20px;
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+.categories li
 {
-    background-color: #b0e0e6;
+    margin-bottom: 10px;
+}
+
+.home-container
+{
+    width: 85% !important;
 }
 
 /*#####################################################################
