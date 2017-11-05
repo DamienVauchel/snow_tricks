@@ -32,6 +32,9 @@
         <!-- ############################### FONT AWESOME ########################################### -->
         <script src="https://use.fontawesome.com/290e2ca6fa.js"></script>
 
+        <!-- ############################### GOOGLE FONTS ########################################### -->
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -48,7 +51,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ path('home', {'page': 1}) }}"><h4>SnowTricks</h4></a>
+                    <a class="navbar-brand" href="{{ path('home', {'page': 1}) }}"><h1>SnowTricks</h1></a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -64,24 +67,22 @@
                                         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                     </a>
                                 </li>
+                                {#<li>#}
+                                    {#<a href="{{ path('fos_user_profile_show') }}">#}
+                                        {#<i class="fa fa-user" aria-hidden="true"></i> Voir mon profil#}
+                                    {#</a>#}
+                                {#</li>#}
+                                {#<li>#}
+                                    {#<a href="{{ path('fos_user_profile_edit') }}">#}
+                                        {#<i class="fa fa-cogs" aria-hidden="true"></i>#}
+                                        {#Modifier mon profil#}
+                                    {#</a>#}
+                                {#</li>#}
                                 <li>
-                                    <a href="{{ path('fos_user_profile_show') }}">
-                                        <i class="fa fa-user" aria-hidden="true"></i> Voir mon profil
+                                    <a href="{{ path('add') }}">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Ajouter un trick
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="{{ path('fos_user_profile_edit') }}">
-                                        <i class="fa fa-cogs" aria-hidden="true"></i>
-                                        Modifier mon profil
-                                    </a>
-                                </li>
-                                {% if is_granted('ROLE_AUTHOR') %}
-                                    <li>
-                                        <a href="{{ path('add') }}">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i> Ajouter un trick
-                                        </a>
-                                    </li>
-                                {% endif %}
                             </ul>
                         </li>
                         {% else %}

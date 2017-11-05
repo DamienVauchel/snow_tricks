@@ -27,6 +27,11 @@ body
     color: #FFFFFF !important;
 }
 
+h1, h2, h3, h4, h5, h6
+{
+    font-family: 'Lobster Two', cursive !important;
+}
+
 /*#####################################################################
 ########################### NAVBAR ####################################
 #####################################################################*/
@@ -38,6 +43,12 @@ body
 .connection-infos
 {
     padding: 10px;
+}
+
+.navbar-header h1
+{
+    margin-top: 0 !important;
+    font-weight: bold;
 }
 
 /*#####################################################################
@@ -75,6 +86,11 @@ body
 .tricks-list-container
 {
     margin-top: 20px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover
+{
+    background-color: #b0e0e6;
 }
 
 /*#####################################################################

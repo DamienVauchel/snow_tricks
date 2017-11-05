@@ -4,6 +4,7 @@ namespace ST\AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Trick
@@ -49,9 +50,20 @@ class Trick
     private $medias;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Category", inversedBy="tricks")
+     */
+    private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Comment", mappedBy="trick", cascade={"remove"})
+     */
+    private $comments;
+
+    /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
     private $slug;
 
@@ -258,5 +270,63 @@ class Trick
     public function getMedias()
     {
         return $this->medias;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     *
+     * @return Trick
+     */
+    public function addComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \ST\AppBundle\Entity\Category $category
+     *
+     * @return Trick
+     */
+    public function setCategory(\ST\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \ST\AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

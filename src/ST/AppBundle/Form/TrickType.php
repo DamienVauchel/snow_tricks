@@ -2,10 +2,9 @@
 
 namespace ST\AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use  Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -25,7 +24,10 @@ class TrickType extends AbstractType
                     'Difficile' => 'hard'
                 )
             ))
-            ->add('slug',                   TextType::class)
+            ->add('category',                  EntityType::class,  array(
+                'class' => 'ST\AppBundle\Entity\Category',
+                'choice_label' => 'name'
+            ))
             ->add('ajouter la figure',      SubmitType::class)
         ;
     }

@@ -3,6 +3,7 @@
 namespace ST\AppBundle\Controller;
 
 use ST\AppBundle\Entity\Trick;
+use ST\AppBundle\Form\TrickEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ST\AppBundle\Form\TrickType;
@@ -28,6 +29,10 @@ class TrickController extends Controller
             ->getManager()
             ->getRepository('STAppBundle:Trick')
             ->getTricks($page, $nbPerPage);
+        $listCategories = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('STAppBundle:Category')
+            ->findAll();
 
         $nbPages = ceil(count($listTricks) / $nbPerPage);
 
@@ -38,20 +43,21 @@ class TrickController extends Controller
 
         return $this->render('AppBundle/index.html.twig', array(
             'listTricks' => $listTricks,
+            'listCategories' => $listCategories,
             'nbPages' => $nbPages,
             'page' => $page
         ));
     }
 
     /**
-     * @Route("/trick/{id}", name="trick", requirements={"id": "\d*"})
+     * @Route("/trick/{slug}", name="trick")
      */
-    public function viewAction($id)
+    public function viewAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('STAppBundle:Trick');
 
-        $trick = $repository->find($id);
+        $trick = $repository->findBySlug($slug);
 
         if ($trick === null)
         {
@@ -66,10 +72,37 @@ class TrickController extends Controller
     }
 
     /**
+     * @param $id
+     * @return Response
+     * @Route("/group/{id}", name="group", requirements={"id": "\d*"})
+     */
+    public function viewCategoryAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repositoryTrick = $em->getRepository('STAppBundle:Trick');
+        $repositoryGroup = $em->getRepository('STAppBundle:Category');
+
+        $listTricks = $repositoryTrick->getGroupTricks($id);
+        $group = $repositoryGroup->find($id);
+
+        if ($group === null)
+        {
+            throw new NotFoundHttpException("Le groupe n'existe pas");
+        }
+
+        return $this->render(
+            ':AppBundle:group.html.twig', array(
+                'group' => $group,
+                'listTricks' => $listTricks
+            )
+        );
+    }
+
+    /**
      * @param $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/add", name="add")
-     * @Security("has_role('ROLE_AUTHOR')")
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
     public function addAction(Request $request)
     {
@@ -88,9 +121,78 @@ class TrickController extends Controller
 
             $this->addFlash('message', "Trick bien enregistré!");
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('home', array('page' => 1));
         }
 
         return $this->render('AppBundle/add.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @param $id
+     * @param $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route("/edit/{id}", name="edit")
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     */
+    public function editAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('STAppBundle:Trick')->find($id);
+
+        if ($trick === null)
+        {
+            throw new NotFoundHttpException("Le trick n'existe pas");
+        }
+
+        $form = $this->createForm(TrickEditType::class, $trick);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $em->flush();
+
+            $this->addFlash('message', "Trick bien modifié");
+
+            return $this->redirectToRoute('home', array('page'    => 1));
+        }
+
+        return $this->render(':AppBundle:edit.html.twig', array(
+            'trick' => $trick,
+            'form'  => $form->createView()
+        ));
+    }
+
+    /**
+     * @param $id
+     * @param $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route("/delete/{id}", name="delete")
+     * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $trick = $em->getRepository('STAppBundle:Trick')->find($id);
+
+        if ($trick === null)
+        {
+            throw new NotFoundHttpException("Le trick n'existe pas");
+        }
+
+        $form = $this->get('form.factory')->create();
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $em->remove($trick);
+            $em->flush();
+
+            $this->addFlash('message', 'Le trick a bien été supprimée');
+
+            return $this->redirectToRoute('home', array('page' => 1));
+        }
+
+        return $this->render(':AppBundle:delete.html.twig', array(
+            'trick'    => $trick,
+            'form'      => $form->createView()
+        ));
     }
 }
