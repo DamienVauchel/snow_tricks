@@ -84,6 +84,7 @@ class TrickController extends Controller
 
         $listTricks = $repositoryTrick->getGroupTricks($id);
         $group = $repositoryGroup->find($id);
+        $listCategories = $repositoryGroup->findAll();
 
         if ($group === null)
         {
@@ -93,7 +94,8 @@ class TrickController extends Controller
         return $this->render(
             ':AppBundle:group.html.twig', array(
                 'group' => $group,
-                'listTricks' => $listTricks
+                'listTricks' => $listTricks,
+                'listCategories' => $listCategories
             )
         );
     }
