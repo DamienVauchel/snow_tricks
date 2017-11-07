@@ -17,33 +17,4 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Media", cascade={"persist", "remove"})
-     */
-    protected $photo;
-
-    /**
-     * Set photo
-     *
-     * @param \ST\AppBundle\Entity\Media $photo
-     *
-     * @return User
-     */
-    public function setPhoto(\ST\AppBundle\Entity\Media $photo = null)
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
-
-    /**
-     * Get photo
-     *
-     * @return \ST\AppBundle\Entity\Media
-     */
-    public function getPhoto()
-    {
-        return $this->photo;
-    }
 }

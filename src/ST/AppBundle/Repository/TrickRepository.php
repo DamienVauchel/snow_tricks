@@ -10,12 +10,12 @@ class TrickRepository extends EntityRepository
     public function getTricks()
     {
         $query = $this->createQueryBuilder('t')
-//            ->leftJoin('a.image', 'i')
-//            ->addSelect('i')
+            ->leftJoin('t.image', 'i')
+            ->addSelect('i')
             ->orderBy('t.title')
             ->getQuery();
 
-        return $query->getArrayResult();
+        return $query->getResult();
     }
 
     public function getGroupTricks($id)

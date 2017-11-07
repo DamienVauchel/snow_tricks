@@ -2,7 +2,6 @@
 
 namespace ST\AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -45,11 +44,6 @@ class Trick
     private $level;
 
     /**
-     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Media", mappedBy="trick", cascade={"remove"})
-     */
-    private $medias;
-
-    /**
      * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Category", inversedBy="tricks")
      */
     private $category;
@@ -79,9 +73,13 @@ class Trick
      */
     private $creation_date;
 
+    /**
+     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function __construct()
     {
-        $this->media = new ArrayCollection();
     }
 
     /**
@@ -239,40 +237,6 @@ class Trick
     }
 
     /**
-     * Add media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     *
-     * @return Trick
-     */
-    public function addMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     */
-    public function removeMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
-    }
-
-    /**
      * Add comment
      *
      * @param \ST\AppBundle\Entity\Comment $comment
@@ -328,5 +292,29 @@ class Trick
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \ST\AppBundle\Entity\Image $image
+     *
+     * @return Trick
+     */
+    public function setImage(\ST\AppBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ST\AppBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

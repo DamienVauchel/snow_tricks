@@ -34,7 +34,7 @@
                                 ">
                             <h4>{{ trick.title|upper }}</h4>
                             par {{ trick.author }}
-                            le {{ trick.creation_date|date('d/m/Y') }}
+                            le {{ trick.creationDate|date('d/m/Y') }}
                             <hr>
                             {#{% if trick.medias is not null %}#}
                             {#<img src="{{ asset(trick.medias.webPath) }}"#}

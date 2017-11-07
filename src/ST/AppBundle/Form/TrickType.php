@@ -16,6 +16,7 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('title',                  TextType::class)
+            ->add('image',                  ImageType::class)
             ->add('description',            TextareaType::class)
             ->add('level',                  ChoiceType::class,  array(
                 'choices' => array(

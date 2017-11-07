@@ -45,11 +45,6 @@ class Trick
     private $level;
 
     /**
-     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Media", mappedBy="trick", cascade={"remove"})
-     */
-    private $medias;
-
-    /**
      * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Category", inversedBy="tricks")
      */
     private $category;
@@ -78,6 +73,11 @@ class Trick
      * @ORM\Column(name="creation_date", type="datetime")
      */
     private $creation_date;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
 
     public function __construct()
     {
@@ -236,40 +236,6 @@ class Trick
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Add media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     *
-     * @return Trick
-     */
-    public function addMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias[] = $media;
-
-        return $this;
-    }
-
-    /**
-     * Remove media
-     *
-     * @param \ST\AppBundle\Entity\Media $media
-     */
-    public function removeMedia(\ST\AppBundle\Entity\Media $media)
-    {
-        $this->medias->removeElement($media);
-    }
-
-    /**
-     * Get medias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMedias()
-    {
-        return $this->medias;
     }
 
     /**
