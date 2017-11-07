@@ -19,26 +19,31 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * Set photo
-     *
-     * @param \ST\AppBundle\Entity\Media $photo
-     *
-     * @return User
+     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
      */
-    public function setPhoto(\ST\AppBundle\Entity\Media $photo = null)
+    private $image;
+
+    /**
+     * Set image
+     *
+     * @param \ST\AppBundle\Entity\Image $image
+     *
+     * @return Trick
+     */
+    public function setImage(\ST\AppBundle\Entity\Image $image = null)
     {
-        $this->photo = $photo;
+        $this->image = $image;
 
         return $this;
     }
 
     /**
-     * Get photo
+     * Get image
      *
-     * @return \ST\AppBundle\Entity\Media
+     * @return \ST\AppBundle\Entity\Image
      */
-    public function getPhoto()
+    public function getImage()
     {
-        return $this->photo;
+        return $this->image;
     }
 }

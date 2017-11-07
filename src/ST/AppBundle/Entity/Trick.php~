@@ -2,7 +2,6 @@
 
 namespace ST\AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -81,7 +80,6 @@ class Trick
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
     }
 
     /**
@@ -294,5 +292,29 @@ class Trick
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set image
+     *
+     * @param \ST\AppBundle\Entity\Image $image
+     *
+     * @return Trick
+     */
+    public function setImage(\ST\AppBundle\Entity\Image $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return \ST\AppBundle\Entity\Image
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
