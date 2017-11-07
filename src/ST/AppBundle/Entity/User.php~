@@ -24,6 +24,18 @@ class User extends BaseUser
     private $image;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
+    /**
      * Set image
      *
      * @param \ST\AppBundle\Entity\Image $image
