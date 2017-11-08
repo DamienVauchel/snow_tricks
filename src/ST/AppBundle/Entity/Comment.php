@@ -36,9 +36,7 @@ class Comment
     private $creationDate;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\User", inversedBy="comments")
      */
     private $author;
 
@@ -107,30 +105,6 @@ class Comment
     }
 
     /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Comment
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
      * Set trick
      *
      * @param \ST\AppBundle\Entity\Trick $trick
@@ -152,5 +126,29 @@ class Comment
     public function getTrick()
     {
         return $this->trick;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \ST\AppBundle\Entity\User $author
+     *
+     * @return Comment
+     */
+    public function setAuthor(\ST\AppBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \ST\AppBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

@@ -12,6 +12,8 @@ class TrickEditType extends AbstractType
     {
         $builder
             ->remove('ajouter la figure')
+            ->remove('image')
+            ->add('image',                  ImageType::class,       array('required' => false))
             ->add('modifier la figure',      SubmitType::class);
     }
 

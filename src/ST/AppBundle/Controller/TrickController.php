@@ -2,13 +2,16 @@
 
 namespace ST\AppBundle\Controller;
 
+use ST\AppBundle\Entity\Comment;
 use ST\AppBundle\Entity\Trick;
+use ST\AppBundle\Form\CommentType;
 use ST\AppBundle\Form\TrickEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use ST\AppBundle\Form\TrickType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TrickController extends Controller
@@ -34,14 +37,57 @@ class TrickController extends Controller
     }
 
     /**
-     * @Route("/trick/{slug}", name="trick")
+     * @param $slug
+     * @param $page
+     * @param $request
+     * @return Response
+     * @Route("/trick/{slug}/{page}", name="trick", defaults={"page": 1})
      */
-    public function viewAction($slug)
+    public function viewAction($slug, $page, Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('STAppBundle:Trick');
+        if ($page < 1)
+        {
+            throw new NotFoundHttpException("La page n'existe pas");
+        }
 
-        $trick = $repository->findBySlug($slug);
+        $nbPerPage = 10;
+
+        $em = $this->getDoctrine()->getManager();
+        $trickRepository = $em->getRepository('STAppBundle:Trick');
+        $commentRepository = $em->getRepository('STAppBundle:Comment');
+
+        $trick = $trickRepository->findBySlug($slug);
+        $trick_id = $trick->getId();
+        $listComments = $commentRepository->findByTrick($trick_id, $page, $nbPerPage);
+
+        $nbPages = ceil(count($listComments) / $nbPerPage);
+
+        if ($page > $nbPages && $page != 1)
+        {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas");
+        }
+
+        $comment = new Comment();
+        $comment->setCreationDate(new \DateTime());
+        $comment->setTrick($trick);
+        $user= $this->getUser();
+        if (isset($user))
+        {
+            $comment->setAuthor($user);
+        }
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('message', "Commentaire bien ajouté!");
+
+            return $this->redirectToRoute('trick', array('slug' => $slug, 'page' => 1));
+        }
 
         if ($trick === null)
         {
@@ -50,7 +96,11 @@ class TrickController extends Controller
 
         return $this->render(
             ':AppBundle:trick.html.twig', array(
-                'trick' => $trick
+                'trick' => $trick,
+                'listComments' => $listComments,
+                'nbPages' => $nbPages,
+                'page' => $page,
+                'form' => $form->createView()
             )
         );
     }

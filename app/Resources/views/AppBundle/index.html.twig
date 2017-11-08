@@ -1,11 +1,6 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    {% for message in app.session.flashbag.get('message') %}
-        <div class="text-center flash-msg">
-            <p>{{ message }}</p>
-        </div>
-    {% endfor %}
     <div id="headerwrap">
         <div class="container">
             <div class="row centered">
@@ -22,20 +17,26 @@
             <br>
             {% for trick in listTricks %}
                 <div class="col-md-4">
-                    <a href="{{ path('trick', {'slug': trick.slug}) }}">
-                        <div class="thumbnail" style="
-                        {% if trick.level == 'easy' %}
-                                background-color: #B0F2B6 !important;
-                        {% elseif trick.level == 'medium' %}
-                                background-color: #E2BC74 !important;
-                        {% else %}
-                                background-color: #F08080 !important;
+                    <div class="thumbnail" style="
+                    {% if trick.level == 'easy' %}
+                            background-color: #B7E9F0 !important;
+                    {% elseif trick.level == 'medium' %}
+                            background-color: #98C2C7 !important;
+                    {% else %}
+                            background-color: #8BB0B5 !important;
+                    {% endif %}
+                            ">
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="text-right">
+                                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                            </div>
                         {% endif %}
-                                ">
+                        <a href="{{ path('trick', {'slug': trick.slug}) }}">
                             <img class="img-responsive" style="height: 200px;" src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
                             <h4 class="text-center">{{ trick.title|upper }}</h4>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             {% else %}
                 <div class="thumbnail">
