@@ -3,7 +3,7 @@
 {% block body %}
     <div class="thumbnail container">
         <a href="{{ path('home') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i> Retour à l'Accueil
+            <i class="fa fa-chevron-left" aria-hidden="true"></i> Retour à l'Accueil
         </a>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div class="text-right">
@@ -51,7 +51,7 @@
         {% endif %}
 
         {% for comment in listComments %}
-            <div class="comment">
+            <div class="comment thumbnail row">
                 <div class="col-sm-2">
                     {% if comment.author.image is null %}
                         <img style="height: 70px" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
@@ -59,14 +59,12 @@
                         <img style="height: 70px" src="{{ asset(comment.author.image.webPath) }}" alt="{{ comment.author.image.alt }}">
                     {% endif %}
                 </div>
-                <div class="col-sm-10">
-                    <b>Commentaire de {{ comment.author.firstname }} {{ comment.author.lastname }}</b>, posté le {{ comment.creationDate|date('d/m/Y à H\\hi\\m\\i\\n') }}
+                <div class="col-sm-10 talkbubble">
+                    <b>Commentaire de {{ comment.author.firstname }} {{ comment.author.lastname }} ({{ comment.author.username }})</b>, posté le {{ comment.creationDate|date('d/m/Y à H\\hi\\m\\i\\n') }}
                     <hr>
                     {{ comment.message }}
                 </div>
             </div>
-            <br>
-            <hr>
         {% else %}
             <div class="thumbnail">
                 Pas de commentaire

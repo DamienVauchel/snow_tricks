@@ -9,6 +9,7 @@
     {% else %}
         <img class="img-responsive" style="height: 200px;" src="{{ asset(app.user.image.webPath) }}" alt="{{ app.user.image.alt }}">
     {% endif %}
+    <hr>
     <div>
         <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
     </div>

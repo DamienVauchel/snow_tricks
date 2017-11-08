@@ -11,9 +11,11 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image',          ImageType::class, array('required' => false))
-            ->add('firstname',      TextType::class)
-            ->add('lastName',       TextType::class);
+            ->add('firstname',      TextType::class, array('label' => "Prénom"))
+            ->add('lastName',       TextType::class, array('label' => "Nom de Famille"))
+            ->add('image',          ImageType::class, array(
+                'required' => false,
+                'label' => "Photo de profil"));
     }
 
     public function getParent()
@@ -32,5 +34,4 @@ class ProfileType extends AbstractType
     {
         return $this->getBlockPrefix();
     }
-
 }

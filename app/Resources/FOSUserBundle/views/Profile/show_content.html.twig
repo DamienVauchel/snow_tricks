@@ -14,6 +14,8 @@
     <div class="col-sm-8">
         <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
         <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        <p>Nom: {{ user.firstname }} {{ user.lastname }}</p>
+        <p>Dernière connexion: le {{ user.lastLogin|date('d/m/Y \\à H\\hi\\m\\i\\ns\\s\\e\\c') }}</p>
     </div>
 
 </div>

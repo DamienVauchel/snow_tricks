@@ -78,8 +78,11 @@ fos_user:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
     profile:
-           form:
-               type: ST\AppBundle\Form\ProfileType
+        form:
+            type: ST\AppBundle\Form\ProfileType
+    registration:
+        form:
+            name: app_user_registration
 
 stof_doctrine_extensions:
     orm:
