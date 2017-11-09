@@ -1,0 +1,23 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+    Erreur - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="thumbnail">
+        <div class="error">
+            <h1 class="text-center">Oops! Erreur</h1>
+            <h2 class="text-center">Le serveur a retourné ce type d'erreur: "{{ status_code }} {{ status_text }}".</h2>
+            <br><br>
+            <div>
+                Quelque chose n'a pas bien fonctionné. Vous pouvez nous envoyer un mail à contact@snowtricks.com pour nous dire comment vous êtes arrivé sur cette page.
+                Nous mettrons tout en oeuvre pour réparer l'erreur dans les meilleurs délais.
+                Navrés pour le désagrément.
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -3,7 +3,7 @@
 #####################################################################*/
 /*
 text: #444444
-background blue: #b0e0e6
+background blue: #435265
  */
 
 /*#####################################################################
@@ -11,7 +11,7 @@ background blue: #b0e0e6
 #####################################################################*/
 body
 {
-    background: #B0e0e6 !important;
+    background: #435265 !important;
     color: #444444 !important;
     font-size: 1.5em !important;
     font-family: 'Rubik', Sans-Serif !important;
@@ -24,8 +24,7 @@ a
 
 a:hover
 {
-    text-decoration: none !important;
-    color: #B0e0e6 !important;
+    color: #435265 !important;
 }
 
 .flash-msg
@@ -49,8 +48,8 @@ a:hover
 
 .btn:hover
 {
-    background-color: #b0e0e6 !important;
-    color: #444444 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -71,6 +70,11 @@ h1, h2, h3, h4, h5, h6
 .trick-title
 {
     font-family: 'Rubik', Sans-Serif !important;
+}
+
+.error
+{
+    padding: 40px !important;
 }
 
 /*#####################################################################
@@ -100,8 +104,8 @@ h1, h2, h3, h4, h5, h6
 
 .navbar ul a:hover
 {
-    background-color: #b0e0e6 !important;
-    color: #444444 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
 }
 
 /*#####################################################################
@@ -209,7 +213,13 @@ h1, h2, h3, h4, h5, h6
 
 .pagination>.active>a
 {
-    background-color: #b0e0e6 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
+}
+
+.pagination>a:hover
+{
+    color: #435265 !important;
 }
 
 /*#####################################################################
@@ -223,6 +233,11 @@ footer
 footer a
 {
     font-size: 2em;
+}
+
+footer a:hover
+{
+    color: #435265 !important;
 }
 
 footer h6

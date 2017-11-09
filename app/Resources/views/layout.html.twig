@@ -128,29 +128,31 @@
         {% block body %}
         {% endblock %}
 
-        <footer class="footer">
-            <div class="container">
-                <div class="col-sm-6" id="copyright">
-                    Tous droits réservés à SnowTricks © 2017
-                    <br>
-                    Site développé par <b><a href="http://www.damienvauchel.com">Damien Vauchel</a></b>
-                </div>
-                <div class="col-sm-6">
-                    <h6 class="text-center">Suivez-nous sur les Réseaux Sociaux</h6>
-                    <div class="row text-center">
-                        <a href="http://www.facebook.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-facebook-official" aria-hidden="true"></i></div>
-                        </a>
-                        <a href="http://www.twitter.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
-                        </a>
-                        <a href="http://www.plus.google.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-google-plus-square" aria-hidden="true"></i></div>
-                        </a>
+        {% block footer %}
+            <footer class="footer">
+                <div class="container">
+                    <div class="col-sm-6" id="copyright">
+                        Tous droits réservés à SnowTricks © 2017
+                        <br>
+                        Site développé par <b><a href="http://www.damienvauchel.com">Damien Vauchel</a></b>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 class="text-center">Suivez-nous sur les Réseaux Sociaux</h6>
+                        <div class="row text-center">
+                            <a href="http://www.facebook.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-facebook-official" aria-hidden="true"></i></div>
+                            </a>
+                            <a href="http://www.twitter.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
+                            </a>
+                            <a href="http://www.plus.google.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-google-plus-square" aria-hidden="true"></i></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        {% endblock %}
 
         {% block javascripts %}
         {% endblock %}
