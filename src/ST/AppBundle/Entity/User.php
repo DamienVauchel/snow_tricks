@@ -26,7 +26,6 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
-     * @Assert\Image()
      */
     private $image;
 
