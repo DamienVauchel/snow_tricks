@@ -81,8 +81,6 @@ class Trick
 
     /**
      * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
-     * @Assert\NotBlank()
-     * @Assert\Image()
      */
     private $image;
 
