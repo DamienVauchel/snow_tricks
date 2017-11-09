@@ -4,6 +4,7 @@ namespace ST\AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
+     * @Assert\Image()
      */
     private $image;
 

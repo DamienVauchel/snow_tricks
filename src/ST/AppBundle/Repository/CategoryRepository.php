@@ -15,4 +15,13 @@ class CategoryRepository extends EntityRepository
 
         return $query->getOneOrNullResult();
     }
+
+    public function findAllByName()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->orderBy('c.name')
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

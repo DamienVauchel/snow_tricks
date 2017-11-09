@@ -28,7 +28,7 @@ class TrickController extends Controller
         $listCategories = $this->getDoctrine()
             ->getManager()
             ->getRepository('STAppBundle:Category')
-            ->findAll();
+            ->findAllByName();
 
         return $this->render('AppBundle/index.html.twig', array(
             'listTricks' => $listTricks,
@@ -84,7 +84,7 @@ class TrickController extends Controller
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('message', "Commentaire bien ajouté!");
+            $this->addFlash('comment-msg', "Commentaire bien ajouté!");
 
             return $this->redirectToRoute('trick', array('slug' => $slug, 'page' => 1));
         }
@@ -119,7 +119,7 @@ class TrickController extends Controller
         $group = $repositoryGroup->findBySlug($slug);
         $id = $group->getId();
         $listTricks = $repositoryTrick->getGroupTricks($id);
-        $listCategories = $repositoryGroup->findAll();
+        $listCategories = $repositoryGroup->findAllByName();
 
         if ($group === null)
         {
@@ -175,6 +175,7 @@ class TrickController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $trick = $em->getRepository('STAppBundle:Trick')->find($id);
+        $slug = $trick->getSlug();
 
         if ($trick === null)
         {
@@ -189,7 +190,7 @@ class TrickController extends Controller
 
             $this->addFlash('message', "Trick bien modifié");
 
-            return $this->redirectToRoute('home', array('page'    => 1));
+            return $this->redirectToRoute('trick', array('slug' => $slug));
         }
 
         return $this->render(':AppBundle:edit.html.twig', array(

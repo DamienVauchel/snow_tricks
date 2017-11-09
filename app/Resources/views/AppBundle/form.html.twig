@@ -12,6 +12,7 @@
         {{ form_label(form.description, "Description du trick", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
         {{ form_errors(form.description) }}
         <div class="col-sm-10">
+            <small><em>Pour ajouter une ou plusieurs vidéo(s), appuyez sur le bouton "Source", collez le(s) lien(s) embed, puis rappuyez sur "Source" pour revenir au mode visuel</em></small>
             {{ form_widget(form.description, {'attr': {'class': 'form-control ckeditor'}}) }}
         </div>
     </div>
