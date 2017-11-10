@@ -152,6 +152,25 @@ class TrickController extends Controller
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
         {
+            $attachments = $trick->getOptionnalPics();
+
+            if ($attachments)
+            {
+                foreach ($attachments as $attachment)
+                {
+                    $file = $attachment->getFile();
+
+                    var_dump($attachment);
+                    $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+                    $file->move(
+                        $this->getParameter('upload_path'), $filename
+                    );
+                    var_dump($filename);
+                    $attachment->setFile($filename);
+                }
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($trick);
             $em->flush();

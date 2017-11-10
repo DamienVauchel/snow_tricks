@@ -49,6 +49,11 @@ class Image
     private $tempFilename;
 
     /**
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick", inversedBy="optionnal_pics")
+     */
+    private $trick;
+
+    /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
@@ -220,4 +225,3 @@ class Image
         return $this->alt;
     }
 }
-

@@ -84,9 +84,15 @@ class Trick
      */
     private $image;
 
+    /**
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
+     */
+    private $optionnal_pics;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->optionnal_pics = new ArrayCollection();
     }
 
     /**
@@ -323,5 +329,39 @@ class Trick
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Add optionnalPic
+     *
+     * @param \ST\AppBundle\Entity\Image $optionnalPic
+     *
+     * @return Trick
+     */
+    public function addOptionnalPic(\ST\AppBundle\Entity\Image $optionnalPic)
+    {
+        $this->optionnal_pics[] = $optionnalPic;
+
+        return $this;
+    }
+
+    /**
+     * Remove optionnalPic
+     *
+     * @param \ST\AppBundle\Entity\Image $optionnalPic
+     */
+    public function removeOptionnalPic(\ST\AppBundle\Entity\Image $optionnalPic)
+    {
+        $this->optionnal_pics->removeElement($optionnalPic);
+    }
+
+    /**
+     * Get optionnalPics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOptionnalPics()
+    {
+        return $this->optionnal_pics;
     }
 }
