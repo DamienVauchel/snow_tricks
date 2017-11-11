@@ -14,14 +14,25 @@ class Command extends ContainerAwareCommand
     {
         $this
             ->setName('premier:test')
-            ->setDescription('ceci est un premier test')
-            ->addArgument('date', InputArgument::OPTIONAL, 'Date du jour');
+            ->setDescription('ceci est un premier test');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $date = $input->getArgument('date');
+        $value = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/tricks.yml", true));
+//        $value = exec("ls ../");
+//        die(var_dump(scandir(__DIR__."/../../../../app/config/tricks.yml")));
+        dump($value);
 
-        $output->writeln($date);
+        foreach($value as $item)
+        {
+            $trick = new Trick();
+            $trick->setTitle($item['title']);
+
+            $em->persist($trick);
+
+
+        }
+        $em->flush();
     }
 }

@@ -44,12 +44,15 @@ class Image
      */
     private $alt;
 
+    /**
+     *
+     */
     private $file;
 
     private $tempFilename;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick", inversedBy="optionnal_pics")
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick", inversedBy="images")
      */
     private $trick;
 

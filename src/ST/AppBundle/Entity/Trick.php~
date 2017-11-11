@@ -80,19 +80,14 @@ class Trick
     private $creation_date;
 
     /**
-     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
-     */
-    private $image;
-
-    /**
      * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
      */
-    private $optionnal_pics;
+    private $images;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->optionnal_pics = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -305,29 +300,5 @@ class Trick
     public function getCategory()
     {
         return $this->category;
-    }
-
-    /**
-     * Set image
-     *
-     * @param \ST\AppBundle\Entity\Image $image
-     *
-     * @return Trick
-     */
-    public function setImage(\ST\AppBundle\Entity\Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \ST\AppBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }

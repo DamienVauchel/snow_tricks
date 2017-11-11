@@ -17,14 +17,10 @@ class TrickType extends AbstractType
     {
         $builder
             ->add('title',                  TextType::class)
-            ->add('image',                  ImageType::class)
-            ->add('optionnal_pics',         CollectionType::class,array(
+            ->add('images',         CollectionType::class,array(
                 'entry_type'        => ImageType::class,
                 'allow_add'         => true,
-                'by_reference'      => false,
-                'attr'              => array(
-                    'multiple'  => true
-                )
+                'by_reference'      => false
             ))
             ->add('description',            TextareaType::class)
             ->add('level',                  ChoiceType::class,  array(

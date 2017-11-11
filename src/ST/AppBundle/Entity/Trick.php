@@ -80,19 +80,14 @@ class Trick
     private $creation_date;
 
     /**
-     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
-     */
-    private $image;
-
-    /**
      * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
      */
-    private $optionnal_pics;
+    private $images;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->optionnal_pics = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -308,60 +303,36 @@ class Trick
     }
 
     /**
-     * Set image
+     * Add image
      *
      * @param \ST\AppBundle\Entity\Image $image
      *
      * @return Trick
      */
-    public function setImage(\ST\AppBundle\Entity\Image $image = null)
+    public function addImage(\ST\AppBundle\Entity\Image $image)
     {
-        $this->image = $image;
+        $this->images[] = $image;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Remove image
      *
-     * @return \ST\AppBundle\Entity\Image
+     * @param \ST\AppBundle\Entity\Image $image
      */
-    public function getImage()
+    public function removeImage(\ST\AppBundle\Entity\Image $image)
     {
-        return $this->image;
+        $this->images->removeElement($image);
     }
 
     /**
-     * Add optionnalPic
-     *
-     * @param \ST\AppBundle\Entity\Image $optionnalPic
-     *
-     * @return Trick
-     */
-    public function addOptionnalPic(\ST\AppBundle\Entity\Image $optionnalPic)
-    {
-        $this->optionnal_pics[] = $optionnalPic;
-
-        return $this;
-    }
-
-    /**
-     * Remove optionnalPic
-     *
-     * @param \ST\AppBundle\Entity\Image $optionnalPic
-     */
-    public function removeOptionnalPic(\ST\AppBundle\Entity\Image $optionnalPic)
-    {
-        $this->optionnal_pics->removeElement($optionnalPic);
-    }
-
-    /**
-     * Get optionnalPics
+     * Get images
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOptionnalPics()
+    public function getImages()
     {
-        return $this->optionnal_pics;
+        return $this->images;
     }
 }

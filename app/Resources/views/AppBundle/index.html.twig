@@ -25,8 +25,15 @@
                             </div>
                         {% endif %}
                         <a href="{{ path('trick', {'slug': trick.slug}) }}">
-                            <img class="img-responsive" style="height: 200px;" src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
-                            <br>
+                            {% for image in trick.images %}
+                                {% if loop.first %}
+                                    <img class="img-responsive" style="height: 200px;" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
+                                    <br>
+                                {% endif %}
+                            {% else %}
+                                <img src="{{ asset('img/default-pic.jpg') }}" alt="image par défaut" style="height: 200px;">
+                                <br>
+                            {% endfor %}
                             <b><h4 class="text-center trick-title">{{ trick.title|upper }}</h4></b>
                         </a>
                     </div>

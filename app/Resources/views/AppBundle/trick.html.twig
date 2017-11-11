@@ -30,7 +30,15 @@
                                         {% else %} <b class="level hard">Difficile</b>
                                         {% endif %}</p>
         </div>
-        <img src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
+        {% for image in trick.images %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="text-right">
+                        <a href="{{ path('delete_image', {'id': image.id}) }}" class="btn btn-danger" style="position:absolute; margin-left: -50px; margin-top: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                {% endif %}
+            <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive">
+            <br>
+        {% endfor %}
         <hr>
         <div>
             {{ trick.description|raw }}
