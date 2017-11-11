@@ -3,6 +3,7 @@
 namespace ST\AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -12,8 +13,13 @@ class TrickEditType extends AbstractType
     {
         $builder
             ->remove('ajouter la figure')
-            ->remove('image')
-            ->add('image',                  ImageType::class,       array('required' => false))
+            ->remove('images')
+            ->add('images',         CollectionType::class, array(
+                'entry_type'        => ImageType::class,
+                'allow_add'         => true,
+                'by_reference'      => false,
+                'required' => false
+            ))
             ->add('modifier la figure',      SubmitType::class);
     }
 

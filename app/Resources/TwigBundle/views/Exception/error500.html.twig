@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}
+    Erreur 500 - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="thumbnail">
+        <div class="error">
+            <h1 class="text-center">Oops! Erreur 500</h1>
+            <h2 class="text-center">Le serveur a retourné ce type d'erreur: "{{ status_code }} {{ status_text }}".</h2>
+            <br><br>
+            <div>
+                Le serveur n'a pas pu combler vos désirs! Ceci est dû à l'inexistance de la page demandée ou à un problème interne.
+                Si l'erreur persiste, vous pouvez nous contacter à contact@snowtricks.com pour nous expliquer le problème.
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

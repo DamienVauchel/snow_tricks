@@ -33,7 +33,13 @@
         <script src="https://use.fontawesome.com/290e2ca6fa.js"></script>
 
         <!-- ############################### GOOGLE FONTS ########################################### -->
-        <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Rubik" rel="stylesheet">
+
+        <!-- ############################### CKEDITOR ########################################### -->
+        <script src="{{ asset('bundles/stapp/ckeditor/ckeditor.js') }}"></script>
+
+        {% block javascripts %}
+        {% endblock %}
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -110,40 +116,45 @@
         </header>
 
         {% for message in app.session.flashbag.get('message') %}
-            <div class="text-center flash-msg">
-                <p>{{ message }}</p>
+            <div id="flash-msg">
+                <div class="text-center flash-msg">
+                    <p>{{ message }}</p>
+                </div>
             </div>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    setTimeout(function(){$("#flash-msg").fadeOut(2000);}, 3000);
+                });
+            </script>
         {% endfor %}
 
         {% block body %}
         {% endblock %}
 
-        <footer class="footer">
-            <div class="container">
-                <div class="col-sm-4">
-                    <h6 class="text-center">Blabla</h6>
-                </div>
-                <div class="col-sm-4">
-                    <h6 class="text-center">Suivez-nous sur les Réseaux Sociaux</h6>
-                    <div class="row text-center">
-                        <a href="http://www.facebook.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-facebook-official" aria-hidden="true"></i></div>
-                        </a>
-                        <a href="http://www.twitter.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
-                        </a>
-                        <a href="http://www.plus.google.com">
-                            <div class="col-xs-4 text-center"><i class="fa fa-google-plus-square" aria-hidden="true"></i></div>
-                        </a>
+        {% block footer %}
+            <footer class="footer">
+                <div class="container">
+                    <div class="col-sm-6" id="copyright">
+                        Tous droits réservés à SnowTricks © 2017
+                        <br>
+                        Site développé par <b><a href="http://www.damienvauchel.com">Damien Vauchel</a></b>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6 class="text-center">Suivez-nous sur les Réseaux Sociaux</h6>
+                        <div class="row text-center">
+                            <a href="http://www.facebook.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-facebook-official" aria-hidden="true"></i></div>
+                            </a>
+                            <a href="http://www.twitter.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-twitter-square" aria-hidden="true"></i></div>
+                            </a>
+                            <a href="http://www.plus.google.com">
+                                <div class="col-xs-4 text-center"><i class="fa fa-google-plus-square" aria-hidden="true"></i></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <h6 class="text-center">Plus d'infos</h6>
-                </div>
-            </div>
-        </footer>
-
-        {% block javascripts %}
+            </footer>
         {% endblock %}
     </body>
 </html>

@@ -1,17 +1,25 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
+    {#{% if app.session.flashbag.get('comment-msg') is defined %}#}
+        {#<script language="javascript">#}
+            {#$(window).load(function() {#}
+                {#$("html, body").animate({ scrollTop: $("#comments").offset().top-50 }, 500);#}
+            {#});#}
+        {#</script>#}
+    {#{% endif %}#}
+
     <div class="thumbnail container">
         <a href="{{ path('home') }}" class="btn btn-default">
-            <i class="glyphicon glyphicon-chevron-left"></i> Retour à l'Accueil
+            <i class="fa fa-chevron-left" aria-hidden="true"></i> Retour à l'Accueil
         </a>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div class="text-right">
-                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </div>
         {% endif %}
-        <h2 class="text-center">{{ trick.title }}</h2>
+        <h2 class="text-center trick-title">{{ trick.title }}</h2>
         <p class="text-right">
             par {{ trick.author }}
         </p>
@@ -22,15 +30,35 @@
                                         {% else %} <b class="level hard">Difficile</b>
                                         {% endif %}</p>
         </div>
-        <img src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
+        {% for image in trick.images %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="text-right">
+                        <a href="{{ path('delete_image', {'id': image.id}) }}" class="btn btn-danger" style="position:absolute; margin-left: -50px; margin-top: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    </div>
+                {% endif %}
+            <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive">
+            <br>
+        {% endfor %}
         <hr>
         <div>
             {{ trick.description|raw }}
         </div>
     </div>
 
+    {% for message in app.session.flashbag.get('comment-msg') %}
+        <div id="flash-msg">
+            <div class="text-center flash-msg">
+                <p>{{ message }}</p>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                setTimeout(function(){$("#flash-msg").fadeOut(2000);}, 3000);
+            });
+        </script>
+    {% endfor %}
 
-    <div class="container thumbnail">
+    <div class="container thumbnail" id="comments">
         <h3 class="text-center">
             Espace de discussion
         </h3>
@@ -51,7 +79,7 @@
         {% endif %}
 
         {% for comment in listComments %}
-            <div class="comment">
+            <div class="comment thumbnail row">
                 <div class="col-sm-2">
                     {% if comment.author.image is null %}
                         <img style="height: 70px" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
@@ -59,14 +87,15 @@
                         <img style="height: 70px" src="{{ asset(comment.author.image.webPath) }}" alt="{{ comment.author.image.alt }}">
                     {% endif %}
                 </div>
-                <div class="col-sm-10">
-                    <b>Commentaire de {{ comment.author.firstname }} {{ comment.author.lastname }}</b>, posté le {{ comment.creationDate|date('d/m/Y à H\\hi\\m\\i\\n') }}
+                <div class="col-sm-10 talkbubble">
+                    <b>Commentaire de {{ comment.author.firstname }} {{ comment.author.lastname }} ({{ comment.author.username }})</b>, posté le {{ comment.creationDate|date('d/m/Y à H\\hi\\m\\i\\n') }}
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('delete_comment', {'id': comment.id}) }}" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    {% endif %}
                     <hr>
                     {{ comment.message }}
                 </div>
             </div>
-            <br>
-            <hr>
         {% else %}
             <div class="thumbnail">
                 Pas de commentaire
@@ -74,11 +103,17 @@
         {% endfor %}
         <div class="text-center">
             <ul class="pagination">
+                {% if page > 1 %}
+                    <li class="page-item"><a class="page-link" href="{{ path('trick', {'slug': trick.slug, 'page': page-1}) }}">Précédent</a></li>
+                {% endif %}
                 {% for p in range(1, nbPages) %}
                     <li {% if p == page %}class="active"{% endif %}>
                         <a href="{{ path('trick', {'slug': trick.slug, 'page': p}) }}" style="{%  if p == 0 %}display: none;{% endif %}">{{ p }}</a>
                     </li>
                 {% endfor %}
+                {% if page < nbPages and page >= 1 %}
+                    <li class="page-item"><a class="page-link" href="{{ path('trick', {'slug': trick.slug, 'page': page+1}) }}">Suivant</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>

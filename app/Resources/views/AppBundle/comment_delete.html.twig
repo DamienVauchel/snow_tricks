@@ -1,0 +1,24 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Supprimer un commentaire - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container thumbnail form-container">
+        <h3 class="text-center">Supprimer un commentaire</h3>
+        <br>
+        <p>
+            Etes-vous certain de vouloir supprimer le commentaire de "{{ comment.author.username }}"?
+        </p>
+        <br>
+        <form action="{{ path('delete_comment', {'id': comment.id}) }}" method="post">
+            <a href="{{ path('trick', {'slug': comment.trick.slug}) }}" class="btn btn-default">
+                <i class="glyphicon glyphicon-chevron-left"></i> Retour au trick
+            </a>
+            <input type="submit" class="btn btn-danger" value="Supprimer">
+
+            {{ form_rest(form) }}
+        </form>
+    </div>
+{% endblock %}

@@ -5,10 +5,11 @@
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     {{ form_widget(form) }}
     {% if app.user.image is null %}
-        <img class="img-responsive" style="height: 200px;" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
+        <img class="img-responsive" style="height: 200px;" src="{{ asset('img/default-user.png') }}" alt="photo de profil par défaut">
     {% else %}
         <img class="img-responsive" style="height: 200px;" src="{{ asset(app.user.image.webPath) }}" alt="{{ app.user.image.alt }}">
     {% endif %}
+    <hr>
     <div>
         <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
     </div>

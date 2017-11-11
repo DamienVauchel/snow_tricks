@@ -44,9 +44,17 @@ class Image
      */
     private $alt;
 
+    /**
+     *
+     */
     private $file;
 
     private $tempFilename;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Trick", inversedBy="images")
+     */
+    private $trick;
 
     /**
      * @ORM\PrePersist()
@@ -218,5 +226,29 @@ class Image
     public function getAlt()
     {
         return $this->alt;
+    }
+
+    /**
+     * Set trick
+     *
+     * @param \ST\AppBundle\Entity\Trick $trick
+     *
+     * @return Image
+     */
+    public function setTrick(\ST\AppBundle\Entity\Trick $trick = null)
+    {
+        $this->trick = $trick;
+
+        return $this;
+    }
+
+    /**
+     * Get trick
+     *
+     * @return \ST\AppBundle\Entity\Trick
+     */
+    public function getTrick()
+    {
+        return $this->trick;
     }
 }

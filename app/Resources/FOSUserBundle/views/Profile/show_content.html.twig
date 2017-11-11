@@ -5,7 +5,7 @@
     <br>
     <div class="col-sm-3">
         {% if user.image is null %}
-            <img class="img-responsive" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
+            <img class="img-responsive" src="{{ asset('img/default-user.png') }}" alt="photo de profil par défaut">
         {% else %}
             <img class="img-responsive" src="{{ asset(app.user.image.webPath) }}" alt="{{ user.image.alt }}">
         {% endif %}
@@ -14,6 +14,8 @@
     <div class="col-sm-8">
         <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
         <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+        <p>Nom: {{ user.firstname }} {{ user.lastname }}</p>
+        <p>Dernière connexion: le {{ user.lastLogin|date('d/m/Y \\à H\\hi\\m\\i\\ns\\s\\e\\c') }}</p>
     </div>
 
 </div>

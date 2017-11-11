@@ -3,8 +3,7 @@
 #####################################################################*/
 /*
 text: #444444
-background blue: #b0e0e6
-
+background blue: #435265
  */
 
 /*#####################################################################
@@ -12,9 +11,10 @@ background blue: #b0e0e6
 #####################################################################*/
 body
 {
-    background: #B0e0e6 !important;
+    background: #435265 !important;
     color: #444444 !important;
     font-size: 1.5em !important;
+    font-family: 'Rubik', Sans-Serif !important;
 }
 
 a
@@ -22,10 +22,15 @@ a
     color: #444444 !important;
 }
 
+a:hover
+{
+    color: #435265 !important;
+}
+
 .flash-msg
 {
     position: absolute;
-    background: #54F98D;
+    background: rgba(84, 249, 141, 0.8);
     padding: 20px;
     font-weight: bold;
     width: 100%;
@@ -43,8 +48,8 @@ a
 
 .btn:hover
 {
-    background-color: #b0e0e6 !important;
-    color: #444444 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
 }
 
 h1, h2, h3, h4, h5, h6
@@ -55,6 +60,21 @@ h1, h2, h3, h4, h5, h6
 .thumbnail
 {
     padding: 20px !important;
+}
+
+.ckeditor
+{
+    border: 1px solid #000 !important;
+}
+
+.trick-title
+{
+    font-family: 'Rubik', Sans-Serif !important;
+}
+
+.error
+{
+    padding: 40px !important;
 }
 
 /*#####################################################################
@@ -84,8 +104,8 @@ h1, h2, h3, h4, h5, h6
 
 .navbar ul a:hover
 {
-    background-color: #b0e0e6 !important;
-    color: #444444 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
 }
 
 /*#####################################################################
@@ -146,9 +166,27 @@ h1, h2, h3, h4, h5, h6
 /*#####################################################################
 ############################# TRICK ###################################
 #####################################################################*/
-.comment
+.talkbubble
 {
-    margin: 10px;
+    position: relative;
+    padding: 20px;
+    background-color: #eee;
+    -moz-border-radius:    10px;
+    -webkit-border-radius: 10px;
+    border-radius:         10px;
+}
+
+.talkbubble:before
+{
+    content:"";
+    position: absolute;
+    right: 100%;
+    top: 26px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 26px solid #eee;
+    border-bottom: 13px solid transparent;
 }
 
 .level
@@ -175,7 +213,13 @@ h1, h2, h3, h4, h5, h6
 
 .pagination>.active>a
 {
-    background-color: #b0e0e6 !important;
+    background-color: #435265 !important;
+    color: #eeeeee !important;
+}
+
+.pagination>a:hover
+{
+    color: #435265 !important;
 }
 
 /*#####################################################################
@@ -189,4 +233,25 @@ footer
 footer a
 {
     font-size: 2em;
+}
+
+footer a:hover
+{
+    color: #435265 !important;
+}
+
+footer h6
+{
+    font-size: 1.2em;
+}
+
+#copyright
+{
+    padding: 20px;
+    font-size: 1em !important;
+}
+
+#copyright a
+{
+    font-size: 1em !important;
 }

@@ -17,30 +17,30 @@
             <br>
             {% for trick in listTricks %}
                 <div class="col-md-4">
-                    <div class="thumbnail" style="
-                    {% if trick.level == 'easy' %}
-                            background-color: #B7E9F0 !important;
-                    {% elseif trick.level == 'medium' %}
-                            background-color: #98C2C7 !important;
-                    {% else %}
-                            background-color: #8BB0B5 !important;
-                    {% endif %}
-                            ">
+                    <div class="thumbnail">
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <div class="text-right">
-                                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-default btn-circle"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </div>
                         {% endif %}
                         <a href="{{ path('trick', {'slug': trick.slug}) }}">
-                            <img class="img-responsive" style="height: 200px;" src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
-                            <h4 class="text-center">{{ trick.title|upper }}</h4>
+                            {% for image in trick.images %}
+                                {% if loop.first %}
+                                    <img class="img-responsive" style="height: 200px;" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
+                                    <br>
+                                {% endif %}
+                            {% else %}
+                                <img src="{{ asset('img/default-pic.jpg') }}" alt="image par défaut" style="height: 200px;">
+                                <br>
+                            {% endfor %}
+                            <b><h4 class="text-center trick-title">{{ trick.title|upper }}</h4></b>
                         </a>
                     </div>
                 </div>
             {% else %}
                 <div class="thumbnail">
-                    Pas d'annonces
+                    Pas de figures
                 </div>
             {% endfor %}
         </div>

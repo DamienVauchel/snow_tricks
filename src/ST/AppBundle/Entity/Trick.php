@@ -5,6 +5,7 @@ namespace ST\AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Trick
@@ -27,6 +28,7 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      */
     private $title;
 
@@ -34,6 +36,7 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
     private $description;
 
@@ -41,11 +44,13 @@ class Trick
      * @var string
      *
      * @ORM\Column(name="level", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $level;
 
     /**
      * @ORM\ManyToOne(targetEntity="ST\AppBundle\Entity\Category", inversedBy="tricks")
+     * @Assert\NotBlank()
      */
     private $category;
 
@@ -75,13 +80,14 @@ class Trick
     private $creation_date;
 
     /**
-     * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
      */
-    private $image;
+    private $images;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -297,26 +303,36 @@ class Trick
     }
 
     /**
-     * Set image
+     * Add image
      *
      * @param \ST\AppBundle\Entity\Image $image
      *
      * @return Trick
      */
-    public function setImage(\ST\AppBundle\Entity\Image $image = null)
+    public function addImage(\ST\AppBundle\Entity\Image $image)
     {
-        $this->image = $image;
+        $this->images[] = $image;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Remove image
      *
-     * @return \ST\AppBundle\Entity\Image
+     * @param \ST\AppBundle\Entity\Image $image
      */
-    public function getImage()
+    public function removeImage(\ST\AppBundle\Entity\Image $image)
     {
-        return $this->image;
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }

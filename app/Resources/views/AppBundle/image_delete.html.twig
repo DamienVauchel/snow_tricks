@@ -1,0 +1,26 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Supprimer une image - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container thumbnail form-container">
+        <h3 class="text-center">Supprimer une image</h3>
+        <br>
+        <p>
+            Etes-vous certain de vouloir supprimer l'image?
+        </p>
+        <br>
+        <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
+        <br>
+        <form action="{{ path('delete_image', {'id': image.id}) }}" method="post">
+            <a href="{{ path('home') }}" class="btn btn-default">
+                <i class="glyphicon glyphicon-chevron-left"></i> Retour à l'accueil
+            </a>
+            <input type="submit" class="btn btn-danger" value="Supprimer">
+
+            {{ form_rest(form) }}
+        </form>
+    </div>
+{% endblock %}

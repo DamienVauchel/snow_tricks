@@ -8,6 +8,16 @@ st_app_group:
     type: annotation
     prefix:   /category
 
+st_app_comment:
+    resource: "@STAppBundle/Controller/CommentController.php"
+    type: annotation
+    prefix:   /comment
+
+st_app_image:
+    resource: "@STAppBundle/Controller/ImageController.php"
+    type: annotation
+    prefix:   /image
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
