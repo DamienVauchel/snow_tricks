@@ -1,0 +1,26 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+    <div class="thumbnail container">
+        {% for trick in trick %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="text-right">
+                    <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                </div>
+            {% endif %}
+            <h2 class="text-center">{{ trick.title }}</h2>
+            <br>
+            <p class="text-right">
+                par {{ trick.author }}, le {{ trick.creationDate|date('d/m/Y') }}
+            </p>
+            <hr>
+            <div>
+                Groupe de la figure: <a href="{{ path('group', {'slug': trick.category.slug}) }}">{{ trick.category.name }}</a>
+            </div>
+            <div>
+                {{ trick.description|raw }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

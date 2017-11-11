@@ -1,0 +1,75 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+    {% for message in app.session.flashbag.get('message') %}
+        <div class="text-center flash-msg">
+            <p>{{ message }}</p>
+        </div>
+    {% endfor %}
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row centered">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1><b>Bienvenue sur SnowTricks!</b></h1>
+                </div>
+            </div><!-- row -->
+        </div><!-- container -->
+    </div><!-- headerwrap -->
+
+    <div class="container home-container">
+        <div class="thumbnail tricks-list-container col-md-9">
+            <h2 class="text-center">Tous les Tricks</h2>
+            <br>
+            {% for trick in listTricks %}
+                <div class="col-md-4">
+                    <a href="{{ path('trick', {'slug': trick.slug}) }}">
+                        <div class="thumbnail" style="
+                        {% if trick.level == 'easy' %}
+                                background-color: #B0F2B6 !important;
+                        {% elseif trick.level == 'medium' %}
+                                background-color: #E2BC74 !important;
+                        {% else %}
+                                background-color: #F08080 !important;
+                        {% endif %}
+                                ">
+                            <h4>{{ trick.title|upper }}</h4>
+                            par {{ trick.author }}
+                            le {{ trick.creation_date|date('d/m/Y') }}
+                            <hr>
+                            {#{% if trick.medias is not null %}#}
+                            {#<img src="{{ asset(trick.medias.webPath) }}"#}
+                            {#alt="{{ trick.medias.alt }}">#}
+                            {#{% endif %}#}
+                        </div>
+                    </a>
+                </div>
+            {% else %}
+                <div class="thumbnail">
+                    Pas d'annonces
+                </div>
+            {% endfor %}
+            {#<div class="col-xs-12 text-center">#}
+                {#<ul class="pagination">#}
+                    {#{% for p in range(1, nbPages) %}#}
+                        {#<li {% if p == page %}class="active"{% endif %}>#}
+                            {#<a href="{{ path('home', {'page': p}) }}">{{ p }}</a>#}
+                        {#</li>#}
+                    {#{% endfor %}#}
+                {#</ul>#}
+            {#</div>#}
+        </div>
+        <div class="col-md-1"></div>
+        <div class="thumbnail col-md-2 tricks-list-container categories">
+            <h4 class="text-center">Groupes de figures</h4>
+            <ul>
+                {% for category in listCategories %}
+                    <li><a href="{{ path('group', {'slug': category.slug}) }}">{{ category.name }}</a>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <a href="{{ path('delete_category', {'id': category.id}) }}" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

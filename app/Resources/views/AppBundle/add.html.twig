@@ -1,0 +1,13 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+    Modifier un trick - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <div class="container thumbnail form-container">
+        <h4 class="text-center">Ajouter une figure</h4>
+        <br>
+        {{ include(':AppBundle:form.html.twig') }}
+    </div>
+{% endblock %}
