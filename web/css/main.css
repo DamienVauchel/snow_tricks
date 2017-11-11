@@ -1,7 +1,9 @@
 /*#####################################################################
 ########################### Colors ####################################
 #####################################################################*/
-/* background blue: #b0e0e6
+/*
+text: #444444
+background blue: #b0e0e6
 
  */
 
@@ -11,6 +13,13 @@
 body
 {
     background: #B0e0e6 !important;
+    color: #444444 !important;
+    font-size: 1.5em !important;
+}
+
+a
+{
+    color: #444444 !important;
 }
 
 .flash-msg
@@ -22,14 +31,30 @@ body
     width: 100%;
 }
 
-.btn-danger
+.btn
 {
     color: #FFFFFF !important;
+}
+
+.btn-default
+{
+    color: #444444 !important;
+}
+
+.btn:hover
+{
+    background-color: #b0e0e6 !important;
+    color: #444444 !important;
 }
 
 h1, h2, h3, h4, h5, h6
 {
     font-family: 'Lobster Two', cursive !important;
+}
+
+.thumbnail
+{
+    padding: 20px !important;
 }
 
 /*#####################################################################
@@ -48,7 +73,19 @@ h1, h2, h3, h4, h5, h6
 .navbar-header h1
 {
     margin-top: 0 !important;
+    font-size: 1.8em;
     font-weight: bold;
+}
+
+.navbar ul a
+{
+    font-weight: bold;
+}
+
+.navbar ul a:hover
+{
+    background-color: #b0e0e6 !important;
+    color: #444444 !important;
 }
 
 /*#####################################################################
@@ -104,6 +141,41 @@ h1, h2, h3, h4, h5, h6
 .form-container
 {
     padding: 20px !important;
+}
+
+/*#####################################################################
+############################# TRICK ###################################
+#####################################################################*/
+.comment
+{
+    margin: 10px;
+}
+
+.level
+{
+    background-color: #444444;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.easy
+{
+    color: #B7E9F0;
+}
+
+.medium
+{
+    color: #98C2C7;
+}
+
+.hard
+{
+    color: #8BB0B5;
+}
+
+.pagination>.active>a
+{
+    background-color: #b0e0e6 !important;
 }
 
 /*#####################################################################

@@ -55,7 +55,7 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ path('home') }}">ACCUEIL</a></li>
+                        <li><a href="{{ path('home') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -108,6 +108,12 @@
                 </div>
             </div>
         </header>
+
+        {% for message in app.session.flashbag.get('message') %}
+            <div class="text-center flash-msg">
+                <p>{{ message }}</p>
+            </div>
+        {% endfor %}
 
         {% block body %}
         {% endblock %}

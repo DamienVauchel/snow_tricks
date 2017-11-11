@@ -18,14 +18,27 @@ class TrickRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function getGroupTricks($id)
+    public function getCommentsTrick($id)
     {
         $query = $this->createQueryBuilder('t')
-            ->where('t.category = :id')
+            ->where('t.comments = :id')
             ->setParameter('id', $id)
             ->getQuery();
 
         return $query->getArrayResult();
+    }
+
+    public function getGroupTricks($id)
+    {
+        $query = $this->createQueryBuilder('t')
+            ->leftJoin('t.image', 'i')
+            ->addSelect('i')
+            ->where('t.category = :id')
+            ->setParameter('id', $id)
+            ->orderBy('t.title')
+            ->getQuery();
+
+        return $query->getResult();
     }
 
     public function findBySlug($slug)
@@ -35,6 +48,6 @@ class TrickRepository extends EntityRepository
             ->setParameter('slug', $slug)
             ->getQuery();
 
-        return $query->getResult();
+        return $query->getOneOrNullResult();
     }
 }

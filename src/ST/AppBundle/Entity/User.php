@@ -19,6 +19,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Comment", mappedBy="author")
+     */
+    private $comments;
+
+    /**
      * @ORM\OneToOne(targetEntity="ST\AppBundle\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
@@ -105,5 +110,39 @@ class User extends BaseUser
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \ST\AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\ST\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
