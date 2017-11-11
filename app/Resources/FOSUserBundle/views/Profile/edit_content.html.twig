@@ -1,8 +1,16 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+<div>
+    <h4 class="text-center">Modifier votre profile</h4>
+    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     {{ form_widget(form) }}
+    {% if app.user.image is null %}
+        <img class="img-responsive" style="height: 200px;" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
+    {% else %}
+        <img class="img-responsive" style="height: 200px;" src="{{ asset(app.user.image.webPath) }}" alt="{{ app.user.image.alt }}">
+    {% endif %}
     <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
     </div>
-{{ form_end(form) }}
+    {{ form_end(form) }}
+</div>

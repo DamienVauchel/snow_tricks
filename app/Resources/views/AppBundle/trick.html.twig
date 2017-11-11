@@ -18,6 +18,7 @@
             <div>
                 Groupe de la figure: <a href="{{ path('group', {'slug': trick.category.slug}) }}">{{ trick.category.name }}</a>
             </div>
+            <img src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
             <div>
                 {{ trick.description|raw }}
             </div>

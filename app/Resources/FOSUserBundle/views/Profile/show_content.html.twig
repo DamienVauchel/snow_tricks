@@ -1,6 +1,19 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    <h3 class="text-center">Mon Profil</h3>
+    <br>
+    <div class="col-sm-3">
+        {% if user.image is null %}
+            <img class="img-responsive" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
+        {% else %}
+            <img class="img-responsive" src="{{ asset(app.user.image.webPath) }}" alt="{{ user.image.alt }}">
+        {% endif %}
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-sm-8">
+        <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+        <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+    </div>
+
 </div>

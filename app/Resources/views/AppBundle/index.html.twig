@@ -32,14 +32,8 @@
                                 background-color: #F08080 !important;
                         {% endif %}
                                 ">
-                            <h4>{{ trick.title|upper }}</h4>
-                            par {{ trick.author }}
-                            le {{ trick.creation_date|date('d/m/Y') }}
-                            <hr>
-                            {#{% if trick.medias is not null %}#}
-                            {#<img src="{{ asset(trick.medias.webPath) }}"#}
-                            {#alt="{{ trick.medias.alt }}">#}
-                            {#{% endif %}#}
+                            <img class="img-responsive" style="height: 200px;" src="{{ asset(trick.image.webPath) }}" alt="{{ trick.image.alt }}">
+                            <h4 class="text-center">{{ trick.title|upper }}</h4>
                         </div>
                     </a>
                 </div>
@@ -48,15 +42,6 @@
                     Pas d'annonces
                 </div>
             {% endfor %}
-            {#<div class="col-xs-12 text-center">#}
-                {#<ul class="pagination">#}
-                    {#{% for p in range(1, nbPages) %}#}
-                        {#<li {% if p == page %}class="active"{% endif %}>#}
-                            {#<a href="{{ path('home', {'page': p}) }}">{{ p }}</a>#}
-                        {#</li>#}
-                    {#{% endfor %}#}
-                {#</ul>#}
-            {#</div>#}
         </div>
         <div class="col-md-1"></div>
         <div class="thumbnail col-md-2 tricks-list-container categories">

@@ -108,7 +108,7 @@ class TrickController extends Controller
 
             $this->addFlash('message', "Trick bien enregistré!");
 
-            return $this->redirectToRoute('home', array('page' => 1));
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('AppBundle/add.html.twig', array('form' => $form->createView()));
