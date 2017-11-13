@@ -207,7 +207,9 @@ class TrickController extends Controller
 
             $this->addFlash('message', "Trick bien modifié");
 
-            return $this->redirectToRoute('trick', array('slug' => $slug));
+            $newSlug = $trick->getSlug();
+
+            return $this->redirectToRoute('trick', array('slug' => $newSlug));
         }
 
         return $this->render(':AppBundle:edit.html.twig', array(
