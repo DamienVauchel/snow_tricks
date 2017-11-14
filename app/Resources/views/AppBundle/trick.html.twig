@@ -77,7 +77,7 @@
             <div class="comment thumbnail row">
                 <div class="col-sm-2">
                     {% if comment.author.image is null %}
-                        <img style="height: 70px" src="{{ asset('uploads/img/tricks/default.png') }}" alt="photo de profil par défaut">
+                        <img style="height: 70px" src="{{ asset('img/default-user.png') }}" alt="photo de profil par défaut">
                     {% else %}
                         <img style="height: 70px" src="{{ asset(comment.author.image.webPath) }}" alt="{{ comment.author.image.alt }}">
                     {% endif %}
