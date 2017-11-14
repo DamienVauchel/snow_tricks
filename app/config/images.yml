@@ -1,0 +1,54 @@
+image_01:
+    trick_slug: "180"
+    extension: "jpg"
+    alt: "photo snowboard 180"
+
+image_02:
+    trick_slug: "180"
+    extension: "jpg"
+    alt: "photo snowboard 180"
+
+image_03:
+    trick_slug: "180"
+    extension: "jpg"
+    alt: "photo snowboard 180"
+
+image_04:
+    trick_slug: "900"
+    extension: "jpg"
+    alt: "photo snowboard 900"
+
+image_05:
+    trick_slug: "900"
+    extension: "jpg"
+    alt: "photo snowboard 900"
+
+image_06:
+    trick_slug: "big-foot"
+    extension: "jpg"
+    alt: "photo snowboard big foot"
+
+image_07:
+    trick_slug: "indy"
+    extension: "jpg"
+    alt: "photo snowboard indy"
+
+image_08:
+    trick_slug: "japan-air"
+    extension: "jpg"
+    alt: "photo snowboard japan air"
+
+image_09:
+    trick_slug: "method-air"
+    extension: "jpg"
+    alt: "photo snowboard method air"
+
+image_10:
+    trick_slug: "mute"
+    extension: "jpg"
+    alt: "photo snowboard mute"
+
+image_11:
+    trick_slug: "sea-belt"
+    extension: "jpg"
+    alt: "photo snowboard sea belt"
