@@ -15,8 +15,8 @@
         </a>
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <div class="text-right">
-                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                <a href="{{ path('edit', {'slug': trick.slug}) }}" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a href="{{ path('delete', {'slug': trick.slug}) }}" class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </div>
         {% endif %}
         <h2 class="text-center trick-title">{{ trick.title }}</h2>
@@ -31,11 +31,6 @@
                                         {% endif %}</p>
         </div>
         {% for image in trick.images %}
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <div class="text-right">
-                        <a href="{{ path('delete_image', {'id': image.id}) }}" class="btn btn-danger" style="position:absolute; margin-left: -50px; margin-top: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                    </div>
-                {% endif %}
             <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive">
             <br>
         {% endfor %}

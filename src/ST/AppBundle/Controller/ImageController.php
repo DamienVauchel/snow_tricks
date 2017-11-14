@@ -24,6 +24,7 @@ class ImageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $image = $em->getRepository('STAppBundle:Image')->find($id);
+        $slug = $image->getTrick()->getSlug();
 
         if ($image === null)
         {
@@ -39,7 +40,7 @@ class ImageController extends Controller
 
             $this->addFlash('message', 'L\'image a bien été supprimée');
 
-            return $this->redirectToRoute('home', array('page' => 1));
+            return $this->redirectToRoute('trick', array('slug' => $slug));
         }
 
         return $this->render(':AppBundle:image_delete.html.twig', array(

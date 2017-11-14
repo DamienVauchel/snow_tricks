@@ -20,8 +20,8 @@
                     <div class="thumbnail">
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <div class="text-right">
-                                <a href="{{ path('edit', {'id': trick.id}) }}" class="btn btn-default btn-circle"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                <a href="{{ path('delete', {'id': trick.id}) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                <a href="{{ path('edit', {'slug': trick.slug}) }}" class="btn btn-default btn-circle"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="{{ path('delete', {'slug': trick.slug}) }}" class="btn btn-danger btn-circle"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </div>
                         {% endif %}
                         <a href="{{ path('trick', {'slug': trick.slug}) }}">

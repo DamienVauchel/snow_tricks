@@ -12,7 +12,7 @@
             Etes-vous certain de vouloir supprimer le trick "{{ trick.title|upper }}"?
         </p>
         <br>
-        <form action="{{ path('delete', {'id': trick.id}) }}" method="post">
+        <form action="{{ path('delete', {'slug': trick.slug}) }}" method="post">
             <a href="{{ path('trick', {'slug': trick.slug}) }}" class="btn btn-default">
                 <i class="glyphicon glyphicon-chevron-left"></i> Retour au trick
             </a>

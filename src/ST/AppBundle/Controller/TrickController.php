@@ -174,17 +174,16 @@ class TrickController extends Controller
     }
 
     /**
-     * @param $id
+     * @param $slug
      * @param $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("/edit/{id}", name="edit")
+     * @Route("/edit/{slug}", name="edit")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
-    public function editAction($id, Request $request)
+    public function editAction($slug, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('STAppBundle:Trick')->find($id);
-        $slug = $trick->getSlug();
+        $trick = $em->getRepository('STAppBundle:Trick')->findBySlug($slug);
 
         if ($trick === null)
         {
@@ -207,7 +206,9 @@ class TrickController extends Controller
 
             $this->addFlash('message', "Trick bien modifié");
 
-            return $this->redirectToRoute('trick', array('slug' => $slug));
+            $newSlug = $trick->getSlug();
+
+            return $this->redirectToRoute('trick', array('slug' => $newSlug));
         }
 
         return $this->render(':AppBundle:edit.html.twig', array(
@@ -217,16 +218,16 @@ class TrickController extends Controller
     }
 
     /**
-     * @param $id
+     * @param $slug
      * @param $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route("/delete/{id}", name="delete")
+     * @Route("/delete/{slug}", name="delete")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $slug)
     {
         $em = $this->getDoctrine()->getManager();
-        $trick = $em->getRepository('STAppBundle:Trick')->find($id);
+        $trick = $em->getRepository('STAppBundle:Trick')->findBySlug($slug);
 
         if ($trick === null)
         {
@@ -242,7 +243,7 @@ class TrickController extends Controller
 
             $this->addFlash('message', 'Le trick a bien été supprimée');
 
-            return $this->redirectToRoute('home', array('page' => 1));
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(':AppBundle:delete.html.twig', array(

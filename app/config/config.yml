@@ -82,7 +82,7 @@ fos_user:
             type: ST\AppBundle\Form\ProfileType
     registration:
         form:
-            name: app_user_registration
+            type: ST\AppBundle\Form\RegistrationType
 
 stof_doctrine_extensions:
     orm:
