@@ -30,7 +30,7 @@ a:hover
 .flash-msg
 {
     position: absolute;
-    background: rgba(84, 249, 141, 0.8);
+    background: rgba(182, 224, 230, 0.8);
     padding: 20px;
     font-weight: bold;
     width: 100%;

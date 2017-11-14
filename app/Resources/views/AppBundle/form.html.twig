@@ -44,6 +44,9 @@
         {{ form_errors(form.images) }}
         {% if trick.images is defined %}
             {% for image in trick.images %}
+                <div class="text-right">
+                    <a href="{{ path('delete_image', {'id': image.id}) }}" class="btn btn-danger" style="position:absolute; margin-left: -50px; margin-top: 10px"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                </div>
                 <img style="width: 200px;" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
             {% endfor %}
         {% endif %}
