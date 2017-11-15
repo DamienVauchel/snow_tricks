@@ -27,10 +27,12 @@ class Command extends ContainerAwareCommand
     {
         $em = $this->getContainer()->get('doctrine')->getManager();
 
-        $categories = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/categories.yml", true));
-        $tricks = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/tricks.yml", true));
-        $images = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/images.yml", true));
-        $comments = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/comments.yml", true));
+        $path = $this->getContainer()->get('kernel');
+
+        $categories = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/categories.yml'), true));
+        $tricks = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/tricks.yml'), true));
+        $images = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/images.yml'), true));
+        $comments = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/comments.yml'), true));
 
         foreach($categories as $item)
         {
