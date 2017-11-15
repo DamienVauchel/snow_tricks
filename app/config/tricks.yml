@@ -1,7 +1,69 @@
-tricks_01:
-    title: "Trick"
-    description: "zedfzrgqzerqz qz efq zerg qz gqzs refq z"
+trick_01:
+    category_slug: "les-grabs"
+    title: "Mute"
+    description: "Saisie de la carre frontside de la planche entre les deux pieds avec la main avant."
+    level: "easy"
+    author: "SnowRider"
 
-tricks_02:
-    title: "Trick02"
-    description: "zedfzrgqzerqz qz efq zerg qz gqzs refq z"
+trick_02:
+    category_slug: "les-grabs"
+    title: "Japan air"
+    description: "Saisie de l'avant de la planche, avec la main avant, du côté de la carre frontside."
+    level: "medium"
+    author: "SnowRider"
+
+trick_03:
+    category_slug: "les-rotations"
+    title: "180"
+    description: "Un 180 désigne un demi-tour, soit 180 degrés d'angle. <iframe width='560' height='315' src='https://www.youtube.com/embed/WHLu1rSMEvQ?rel=0&amp;controls=0' frameborder='0' allowfullscreen></iframe>"
+    level: "easy"
+    author: "SnowRider"
+
+trick_04:
+    category_slug: "les-rotations"
+    title: "Big Foot"
+    description: "Un 1080 ou Big Foot désigne trois tours complets, soit 1080 degrés d'angle."
+    level: "hard"
+    author: "SnowRider"
+
+trick_05:
+    category_slug: "les-grabs"
+    title: "Indy"
+    description: "Saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière."
+    level: "medium"
+    author: "SnowRider"
+
+trick_06:
+    category_slug: "old-school"
+    title: "Method Air"
+    description: " "
+    level: "easy"
+    author: "SnowRider"
+
+trick_07:
+    category_slug: "old-school"
+    title: "Backside Air"
+    description: " "
+    level: "medium"
+    author: "SnowRider"
+
+trick_08:
+    category_slug: "les-rotations"
+    title: "Le trois six"
+    description: "Le trois six ou 360 pour un tour complet."
+    level: "medium"
+    author: "SnowRider"
+
+trick_09:
+    category_slug: "les-rotations"
+    title: "900"
+    description: "900 pour deux tours et demi."
+    level: "hard"
+    author: "SnowRider"
+
+trick_10:
+    category_slug: "les-grabs"
+    title: "Sea Belt"
+    description: "Saisie du carre frontside à l'arrière avec la main avant."
+    level: "medium"
+    author: "SnowRider"
