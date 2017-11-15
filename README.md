@@ -1,5 +1,7 @@
 # Snow Tricks
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/db929649-b76c-4b74-842f-4d1fedcdc8b7/big.png)](https://insight.sensiolabs.com/projects/db929649-b76c-4b74-842f-4d1fedcdc8b7)
+
 Welcome on the Snow Tricks app GitHub. A **Symfony 3.3** project.
 
 ## General context
