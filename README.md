@@ -1,72 +1,85 @@
-Symfony Standard Edition
-========================
+# Snow Tricks
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+Welcome on the Snow Tricks app GitHub. A **Symfony 3.3** project.
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+## General context
 
-What's inside?
---------------
+This project is linked to the OpenClassRooms DA PHP/Symfony's studies. It is the 6th project in which it is asked to create a community website called SnowTricks. This is the first Symfony project.
 
-The Symfony Standard Edition is configured with the following defaults:
+Visitors can't write or edit tricks but can sign up.
 
-  * An AppBundle you can use to start coding;
+When logged, they can write new tricks, comments and edit/delete tricks. Multi Upload is enabled for images on tricks and embed links can be pasted in the description.
 
-  * Twig as the only configured template engine;
+If you have admin role, you can add and delete categories too and delete comments to moderate the discusses.
 
-  * Doctrine ORM/DBAL;
+## Prerequisite
 
-  * Swiftmailer;
+* PHP 7
+* MySQL
+* Apache or IIS depend of your OS
 
-  * Annotations enabled for everything.
+Easier: You can download MAMP, WAMP or XAMPP depend of your OS
+* Composer for **Symfony 3.3** and bundles installations
 
-It comes pre-configured with the following bundles:
+## Add-ons
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+* Bootstrap
+* jQuery
+* Font Awesome
+* Google Fonts: *Lobster Two* and *Rubik*
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+## ORM
+Doctrine
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+## Bundles
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+* Twig
+* FOS UserBundle
+* CKEditor
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+## Installation
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+Download project or clone it in the htdocs or www depend of your OS
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+* If you are using LAMPP on Linux, check your permissions: Go to /opt/lampp/htdocs/ open a bash and type:
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+        $  sudo ls -l
+    Change permissions for everybody to be able to update informations in every repository's folders.
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
+1. **Symfony 3.3 and bundles installations** Open bash in folder and type:
 
-  * [**SensioGeneratorBundle**][13] (in dev env) - Adds code generation
-    capabilities
+        composer update
+        
+    Then, type:
+        
+        php bin/console assets:install web
+        
+2. **Database creation** Type:
 
-  * [**WebServerBundle**][14] (in dev env) - Adds commands for running applications
-    using the PHP built-in web server
+        php bin/console doctrine:database:create
+        
+    Then
+    
+        php bin/console doctrine:schema:update --force
+        
+3. **Admin creation** Type:
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+        php bin/console fos:user:create yourusername --super-admin
+        
+    *For example if you wanna be called "admin"*
+    
+        php bin/console fos:user:create admin --super-admin
+        
+4. **Example Datas in database** Type:
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
+        php bin/console st:datas
 
-Enjoy!
+Now, you can go on the URL:
 
-[1]:  https://symfony.com/doc/3.3/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/3.3/doctrine.html
-[8]:  https://symfony.com/doc/3.3/templating.html
-[9]:  https://symfony.com/doc/3.3/security.html
-[10]: https://symfony.com/doc/3.3/email.html
-[11]: https://symfony.com/doc/3.3/logging.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
-[14]: https://symfony.com/doc/current/setup/built_in_web_server.html
+[http://localhost/snow_tricks/web](http://localhost/snow_tricks/web) (if you put the folder on your apache root)
+
+And enjoy :)
+
+If you have any question, you can contact me
+
+Thanks!
