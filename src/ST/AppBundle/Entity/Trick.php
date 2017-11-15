@@ -81,6 +81,7 @@ class Trick
 
     /**
      * @ORM\OneToMany(targetEntity="ST\AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
+     * @Assert\Valid
      */
     private $images;
 

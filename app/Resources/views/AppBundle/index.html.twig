@@ -17,7 +17,7 @@
             <br>
             {% for trick in listTricks %}
                 <div class="col-md-4">
-                    <div class="thumbnail">
+                    <div class="thumbnail index-trick">
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <div class="text-right">
                                 <a href="{{ path('edit', {'slug': trick.slug}) }}" class="btn btn-default btn-circle"><i class="fa fa-pencil" aria-hidden="true"></i></a>
