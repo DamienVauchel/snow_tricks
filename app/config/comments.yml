@@ -1,0 +1,64 @@
+comment_01:
+    trick_slug: "180"
+    author_id: 1
+    message: "Bonjour, ceci est un commentaire"
+
+comment_02:
+    trick_slug: "180"
+    author_id: 1
+    message: "Nous testons ici les commentaires"
+
+comment_03:
+    trick_slug: "180"
+    author_id: 1
+    message: "Mais aussi la pagination qui nous affiche les commentaires"
+
+comment_04:
+    trick_slug: "180"
+    author_id: 1
+    message: "Ils sont 10 par page"
+
+comment_05:
+    trick_slug: "180"
+    author_id: 1
+    message: "Organisés par date"
+
+comment_06:
+    trick_slug: "180"
+    author_id: 1
+    message: "Du plus récent"
+
+comment_07:
+    trick_slug: "180"
+    author_id: 1
+    message: "Au plus ancien"
+
+comment_08:
+    trick_slug: "180"
+    author_id: 1
+    message: "Ils apparaissent sous forme de bulle"
+
+comment_09:
+    trick_slug: "180"
+    author_id: 1
+    message: "Avec le nom complet, le pseudo et la photo de celui qui l'a posté"
+
+comment_10:
+    trick_slug: "180"
+    author_id: 1
+    message: "Cela permettra de créer un fil de discussion"
+
+comment_11:
+    trick_slug: "180"
+    author_id: 1
+    message: "Autour de chaque figure de snowboard"
+
+comment_12:
+    trick_slug: "180"
+    author_id: 1
+    message: "Et que chacun puisse donc partager son expérience"
+
+comment_13:
+    trick_slug: "180"
+    author_id: 1
+    message: "Merci!"

@@ -2,6 +2,7 @@
 namespace ST\AppBundle\Command;
 
 use ST\AppBundle\Entity\Category;
+use ST\AppBundle\Entity\Comment;
 use ST\AppBundle\Entity\Image;
 use ST\AppBundle\Entity\Trick;
 use ST\AppBundle\Entity\User;
@@ -29,6 +30,7 @@ class Command extends ContainerAwareCommand
         $categories = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/categories.yml", true));
         $tricks = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/tricks.yml", true));
         $images = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/images.yml", true));
+        $comments = Yaml::parse(file_get_contents(__DIR__."/../../../../app/config/comments.yml", true));
 
         foreach($categories as $item)
         {
@@ -65,6 +67,22 @@ class Command extends ContainerAwareCommand
             $image->setTrick($trick);
 
             $em->persist($image);
+        }
+        $em->flush();
+
+        foreach($comments as $item)
+        {
+            $comment = new Comment();
+            $comment->setCreationDate(new \DateTime());
+            $trick_slug = $item['trick_slug'];
+            $trick = $em->getRepository('STAppBundle:Trick')->findBySlug($trick_slug);
+            $comment->setTrick($trick);
+            $author_id = $item['author_id'];
+            $author = $em->getRepository('STAppBundle:User')->findOneBy(array('id' => $author_id));
+            $comment->setAuthor($author);
+            $comment->setMessage($item['message']);
+
+            $em->persist($comment);
         }
         $em->flush();
 
