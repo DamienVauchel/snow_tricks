@@ -29,10 +29,10 @@ class Command extends ContainerAwareCommand
 
         $path = $this->getContainer()->get('kernel');
 
-        $categories = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/categories.yml'), true));
-        $tricks = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/tricks.yml'), true));
-        $images = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/images.yml'), true));
-        $comments = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/config/comments.yml'), true));
+        $categories = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/command/categories.yml'), true));
+        $tricks = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/command/tricks.yml'), true));
+        $images = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/command/images.yml'), true));
+        $comments = Yaml::parse(file_get_contents($path->locateResource('@STAppBundle/Resources/command/comments.yml'), true));
 
         foreach($categories as $item)
         {
@@ -88,6 +88,6 @@ class Command extends ContainerAwareCommand
         }
         $em->flush();
 
-        $output->writeln("Your datas have been succefully added to database");
+        $output->writeln("Your datas have been successfully added to database");
     }
 }
