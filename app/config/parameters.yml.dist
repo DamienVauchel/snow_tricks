@@ -15,5 +15,7 @@ parameters:
     mailer_user: damien@damien.com
     mailer_password: ~
 
+    session_prefix: snowTricks
+
     # A secret key that's used to generate certain security-related tokens
     secret: SecretIsNotTheOriginalOne
