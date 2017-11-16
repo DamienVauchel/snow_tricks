@@ -1,24 +1,24 @@
 <?php
 
-namespace ST\AppBundle\Form;
+namespace ST\AppBundle\Form\Type;
 
 use  Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class CommentType extends AbstractType
+class CategoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('message',                    TextareaType::class)
-            ->add('envoyer le commentaire',     SubmitType::class)
+            ->add('name',                  TextType::class)
+            ->add('ajouter un groupe',      SubmitType::class)
         ;
     }
 
     public function getName()
     {
-        return "st_appbundle_comment";
+        return "st_appbundle_category";
     }
 }

@@ -4,16 +4,15 @@ namespace ST\AppBundle\Controller;
 
 use ST\AppBundle\Entity\Comment;
 use ST\AppBundle\Entity\Trick;
-use ST\AppBundle\Form\CommentType;
-use ST\AppBundle\Form\TrickEditType;
+use ST\AppBundle\Form\Type\CommentType;
+use ST\AppBundle\Form\Type\TrickEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use ST\AppBundle\Form\TrickType;
+use ST\AppBundle\Form\Type\TrickType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Yaml\Yaml;
 
 class TrickController extends Controller
 {

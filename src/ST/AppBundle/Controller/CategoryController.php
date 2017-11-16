@@ -3,7 +3,7 @@
 namespace ST\AppBundle\Controller;
 
 use ST\AppBundle\Entity\Category;
-use ST\AppBundle\Form\CategoryType;
+use ST\AppBundle\Form\Type\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;

@@ -15,11 +15,11 @@ services:
         public: false
 
     app.form.profile:
-       class: ST\AppBundle\Form\ProfileType
+       class: ST\AppBundle\Form\Type\ProfileType
        tags:
            - { name: form.type, alias: app_user_profile }
 
     app.form.registration:
-       class: ST\AppBundle\Form\RegistrationType
+       class: ST\AppBundle\Form\Type\RegistrationType
        tags:
            - { name: form.type, alias: app_user_registration }

@@ -74,10 +74,10 @@ fos_user:
         sender_name: "%mailer_user%"
     profile:
         form:
-            type: ST\AppBundle\Form\ProfileType
+            type: ST\AppBundle\Form\Type\ProfileType
     registration:
         form:
-            type: ST\AppBundle\Form\RegistrationType
+            type: ST\AppBundle\Form\Type\RegistrationType
 
 stof_doctrine_extensions:
     orm:
