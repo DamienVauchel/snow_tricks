@@ -24,13 +24,6 @@ class Image
      */
     private $id;
 
-//    /**
-//     * @var string
-//     *
-//     * @ORM\Column(name="title", type="string", length=255, nullable=true)
-//     */
-//    private $title;
-
     /**
      * @var string
      *
@@ -155,30 +148,6 @@ class Image
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Image
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**

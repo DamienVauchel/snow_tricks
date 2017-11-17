@@ -30,12 +30,17 @@
                                         {% else %} <b class="level hard">Difficile</b>
                                         {% endif %}</p>
         </div>
-        {% for image in trick.images %}
-            <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive">
-            <br>
-        {% endfor %}
-        <hr>
-        <div>
+        <div class="row">
+            {% for image in trick.images %}
+                {% if loop.first %}
+                    <img class="img-responsive" src="{{ asset(image.webPath) }}" alt="{{ image.alt }}">
+                    <br>
+                {% else %}
+                    <img src="{{ asset(image.webPath) }}" alt="{{ image.alt }}" class="img-responsive col-sm-6">
+                {% endif %}
+            {% endfor %}
+        </div><hr>
+        <div class="trick-desc" class="row">
             {{ trick.description|raw }}
         </div>
     </div>
