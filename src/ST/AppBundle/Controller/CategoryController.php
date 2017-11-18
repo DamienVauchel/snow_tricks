@@ -33,7 +33,7 @@ class CategoryController extends Controller
 
             $this->addFlash('message', "Groupe bien enregistré!");
 
-            return $this->redirectToRoute('home', array('page' => 1));
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(':AppBundle:category_add.html.twig', array('form' => $form->createView()));
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 
             $this->addFlash('message', 'Le groupe a bien été supprimée');
 
-            return $this->redirectToRoute('home', array('page' => 1));
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(':AppBundle:category_delete.html.twig', array(
