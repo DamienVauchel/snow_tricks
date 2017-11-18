@@ -4,6 +4,7 @@ namespace ST\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,7 @@ class ImageController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/delete/{id}", name="delete_image")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     * @Method({"DELETE"})
      */
     public function deleteAction(Request $request, $id)
     {

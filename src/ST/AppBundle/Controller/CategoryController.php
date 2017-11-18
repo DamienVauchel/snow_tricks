@@ -6,6 +6,7 @@ use ST\AppBundle\Entity\Category;
 use ST\AppBundle\Form\Type\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,6 +19,7 @@ class CategoryController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/add", name="add_category")
      * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"POST"})
      */
     public function addAction(Request $request)
     {
@@ -45,6 +47,7 @@ class CategoryController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/delete/{id}", name="delete_category")
      * @Security("has_role('ROLE_ADMIN')")
+     * @Method({"DELETE"})
      */
     public function deleteAction(Request $request, $id)
     {

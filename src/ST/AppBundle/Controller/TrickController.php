@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class TrickController extends Controller
 {
     /**
      * @Route("/", name="home")
+     * @Method({"GET"})
      */
     public function indexAction()
     {
@@ -42,6 +44,7 @@ class TrickController extends Controller
      * @param $request
      * @return Response
      * @Route("/trick/{slug}/{page}", name="trick", defaults={"page": 1})
+     * @Method({"GET", "POST"})
      */
     public function viewAction($slug, $page, Request $request)
     {
@@ -109,6 +112,7 @@ class TrickController extends Controller
      * @param $slug
      * @return Response
      * @Route("/group/{slug}", name="group")
+     * @Method({"GET"})
      */
     public function viewCategoryAction($slug)
     {
@@ -140,6 +144,7 @@ class TrickController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/add", name="add")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     * @Method({"GET", "POST"})
      */
     public function addAction(Request $request)
     {
@@ -178,6 +183,7 @@ class TrickController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/edit/{slug}", name="edit")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     * @Method({"GET", "PUT"})
      */
     public function editAction($slug, Request $request)
     {
@@ -222,6 +228,7 @@ class TrickController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route("/delete/{slug}", name="delete")
      * @Security("is_granted('IS_AUTHENTICATED_REMEMBERED')")
+     * @Method({"DELETE"})
      */
     public function deleteAction(Request $request, $slug)
     {
