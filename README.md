@@ -50,7 +50,7 @@ Download project or clone it in the htdocs or www depend of your OS
 
 1. **Symfony 3.3 and bundles installations** Open bash in folder and type:
 
-        composer update
+        composer install
         
     Then, type:
         
